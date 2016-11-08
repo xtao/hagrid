@@ -20,26 +20,3 @@ web:
     memory: 64m
     secret_files:
         - hagrid.conf.json
-
-web.icinga:
-    image: registry.lain.local/centos-lain-icinga2:20160919
-    memory: 256M
-    cmd: ./run_icinga.sh
-    port: 80
-    mountpoint:
-        - icinga.lain.cloud
-    https_only: true
-    stateful: true
-    secret_files:
-        - /etc/icinga2/features-available/ido-mysql.conf
-        - /etc/icinga2/scripts/util.sh
-        - /etc/icingaweb2/resources.ini
-    persistent_dirs:
-        - /var/lib/icinga2
-    logs:
-        - icingaweb2.log
-
-
-use_services:
-    mysql-service:
-        - mysql-master
